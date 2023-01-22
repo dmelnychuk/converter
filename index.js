@@ -59,7 +59,7 @@ const obj = {
   
   const dataName = test.condition.include[0][nameInclude];
   const sortEmail = test.condition.sort_by[0];
-  console.log(dataName)
+  
   
   const resultInclude = obj.data
     .filter((o) => o[nameInclude] === dataName)
@@ -72,12 +72,30 @@ const obj = {
 //   console.table(resultObj);
 
 ////
-  let obj2 = {"data": [{"user": "mike@mail.com", "rating": 20, "disabled": false},
-  {"user": "greg@mail.com", "rating": 14, "disabled": false},
-  {"user": "john@mail.com", "rating": 25, "disabled": true}],
-  "condition": {"exclude": [{"disabled": true}], "sort_by": ["rating"]}};
+  let obj2 = 
+    {"data": [
+        {"user": "mike@mail.com", "rating": 20, "disabled": false},
+        {"user": "greg@mail.com", "rating": 14, "disabled": false},
+        {"user": "john@mail.com", "rating": 25, "disabled": true}
+    ],
+
+        "condition":{
+        "exclude": [{"disabled": true}], 
+        "sort_by": ["rating"]
+    }};
+
+
+let statusInclude
+for (let key in obj2.data[0]) {
+    statusInclude = key;
+}
 
 const dataStatus = obj2.condition.exclude[0].disabled;
+console.log(dataStatus);
 
+const resultStatus = obj2.data
+ .filter((o) => o[statusInclude] === dataStatus);
+ 
+console.log(obj2.data);
 
-
+console.log(resultStatus);

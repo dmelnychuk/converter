@@ -105,45 +105,76 @@ const resultRating = resultStatus
 
 const resultObj2 = { resultRating };
 
-console.log(resultObj2);
+//console.log(resultObj2);
     
 
 
 
 ///Task 3
 
+let datum = {"result": {
+  "random_point": {"x": 10, "y": 10, "z": 10},
+  "search_points": [{"x": 0, "y": 1, "z": 2}, {"x": 10, "y": 321, "z": 11}],
 
+  }}
+
+random_point = datum.result.random_point;
+search_points = datum.result.search_points[0];
+
+///function to calculate distance between two points 
+function distance (random_point, search_points) {
+
+    let x = Math.abs(random_point.x - search_points.x);
+    let y = Math.abs(random_point.y - search_points.y);
+    let z = Math.abs(random_point.z - search_points.z);
+    let distance = x + y + z;
+    datum.result.distance = []
+    datum.result.distance.push(distance)
+    return datum;
+    
+}
+
+
+
+
+
+let sortedArray = [...Array(101).keys()];
+console.log(sortedArray); //test sorted array
+let key = 99;
+let iCalls = 0;
+let calls = [];
 
  function binarySearch(sortedArray, key){
     let start = 0;
     let end = sortedArray.length - 1;
+    
 
     while (start <= end) {
+        iCalls++;
         let middle = Math.floor((start + end) / 2);
 
         if (sortedArray[middle] === key) {
 
             // found the key
-            console.log(text);
-            return middle;
+            console.log(iCalls);
+            calls.push(iCalls);
+            return middle; ///returns index of element in array
+            
         } else if (sortedArray[middle] < key) {
             // continue searching to the right
             start = middle + 1;
         } else {
-            // search searching to the left
+            // searching to the left
             end = middle - 1;
-        }
+        }   
     }
 	// key wasn't found
     return -1;
 }
 
 
- console.log(binarySearch([3, 4, 5, 6, 7, 9, 17, 22, 21, 23], 4))
+ console.log(sortedArray[binarySearch(sortedArray, key)]); //test binary search
+
+ 
 
 
- {"result": {
-    "random_point": {"x": 10, "y": 10, "z": 10},
-    "search_points": [{"x": 0, "y": 1, "z": 2}, ..., {"x": 10, "y": 321, "z": 11}],
-    "calls": 85
-    }}

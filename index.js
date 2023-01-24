@@ -112,24 +112,38 @@ console.log(resultObj2);
 
 ///Task 3
 
- console.log("Task 3...");
 
- function binarySearch (arr, target) {
-    let leftIndex = 0
-    let rightIndex = arr.length - 1;
 
-    while (leftIndex <= rightIndex) {
-        let middleIndex = Math.floor(leftIndex + rightIndex) /2
-        if (target === arr[middleIndex]) {
-            return  middleIndex}
-            if(target  < arr[middleIndex]) {
-                rightIndex = middleIndex - 1
-            } else {
-                leftIndex = middleIndex + 1
-            }
+ function binarySearch(sortedArray, key){
+    let start = 0;
+    let end = sortedArray.length - 1;
+
+    while (start <= end) {
+        let middle = Math.floor((start + end) / 2);
+
+        if (sortedArray[middle] === key) {
+
+            // found the key
+            console.log(text);
+            return middle;
+        } else if (sortedArray[middle] < key) {
+            // continue searching to the right
+            start = middle + 1;
+        } else {
+            // search searching to the left
+            end = middle - 1;
+        }
     }
-    return -1
+	// key wasn't found
+    return -1;
+}
 
- }
 
  console.log(binarySearch([3, 4, 5, 6, 7, 9, 17, 22, 21, 23], 4))
+
+
+ {"result": {
+    "random_point": {"x": 10, "y": 10, "z": 10},
+    "search_points": [{"x": 0, "y": 1, "z": 2}, ..., {"x": 10, "y": 321, "z": 11}],
+    "calls": 85
+    }}

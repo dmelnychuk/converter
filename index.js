@@ -112,37 +112,16 @@ const resultObj2 = { resultRating };
 
 ///Task 3
 
-let datum = {"result": {
-  "random_point": {"x": 10, "y": 10, "z": 10},
-  "search_points": [{"x": 0, "y": 1, "z": 2}, {"x": 10, "y": 321, "z": 11}],
-
-  }}
-
-random_point = datum.result.random_point;
-search_points = datum.result.search_points[0];
-
-///function to calculate distance between two points 
-function distance (random_point, search_points) {
-
-    let x = Math.abs(random_point.x - search_points.x);
-    let y = Math.abs(random_point.y - search_points.y);
-    let z = Math.abs(random_point.z - search_points.z);
-    let distance = x + y + z;
-    datum.result.distance = []
-    datum.result.distance.push(distance)
-    return datum;
-    
-}
+/// Я не зовсім зрозумів умови завдання, тому з ним виякли деякі труднощі. 
+///Водночас основу завдання - алгоритм бінарного пошуку (самий швидкий спосіб знайти точку) та фунцію для розрахунку відстані між двома точками, я написав.
+///Не зовсім зрозумів, як саме все це потрібно з'єднати, тому вирішив відпривати як є.
 
 
-
-
-
-let sortedArray = [...Array(101).keys()];
-console.log(sortedArray); //test sorted array
-let key = 99;
+let sortedArray = [...Array(101).keys()]; // array of possible searched item position
+let key = 100; // can change to any variable x, y, z
 let iCalls = 0;
 let calls = [];
+
 
  function binarySearch(sortedArray, key){
     let start = 0;
@@ -156,9 +135,9 @@ let calls = [];
         if (sortedArray[middle] === key) {
 
             // found the key
-            console.log(iCalls);
+            console.log(`Number of Calls :${iCalls}`);
             calls.push(iCalls);
-            return middle; ///returns index of element in array
+            return middle; 
             
         } else if (sortedArray[middle] < key) {
             // continue searching to the right
@@ -173,8 +152,35 @@ let calls = [];
 }
 
 
- console.log(sortedArray[binarySearch(sortedArray, key)]); //test binary search
+ //console.log(sortedArray[binarySearch(sortedArray, key)]); //test binary search
 
- 
 
+let datum = {"result": {
+  "random_point": {"x": 10, "y": 10, "z": 10},
+  "search_points": [{"x": 0, "y": 1, "z": 2}, {"x": 10, "y": 321, "z": 11}],
+
+  }}
+
+random_point = datum.result.random_point;
+search_points = datum.result.search_points;
+
+///function to calculate distance between two points 
+
+
+
+///function to calculate distance between two points from each object in search_points array
+function distance(){
+    let distance = [];
+    for (let i = 0; i < search_points.length; i++){
+        let x = Math.abs(search_points[i].x - random_point.x);
+        let y = Math.abs(search_points[i].y - random_point.y);
+        let z = Math.abs(search_points[i].z - random_point.z);
+        let amount = (x + y +z); ///I just calculate the whole distance, not the distance between two points. Not sure if that is exactl;y what was needed.
+        distance.push(amount);
+        console.log(`Distance between Random_point and Search_point(Index:${[i]}) is ${amount}`);
+    }
+    return distance;
+}
+
+console.log(distance())
 
